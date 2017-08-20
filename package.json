@@ -1,0 +1,14 @@
+{
+  "name": "taskr",
+  "version": "1.0.0",
+  "description": "cli for repetitive tasks",
+  "main": "index.js",
+  "author": "Brian Ruddy <briancruddy@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "node-fetch": "^1.7.1",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.1",
+    "yargs": "^8.0.2"
+  }
+}
