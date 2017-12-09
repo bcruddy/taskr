@@ -12,16 +12,16 @@ function getPrices () {
         eth = fetch(`${baseEndpoint}/eth-usd`).then(r => r.json()),
         ltc = fetch(`${baseEndpoint}/ltc-usd`).then(r => r.json()),
         xrp = fetch(`${baseEndpoint}/xrp-usd`).then(r => r.json()),
-        neo = fetch(`${baseEndpoint}/neo-usd`).then(r => r.json()),
-        vtc = fetch(`${baseEndpoint}/vtc-usd`).then(r => r.json());
+        vtc = fetch(`${baseEndpoint}/vtc-usd`).then(r => r.json()),
+        iota = fetch(`${baseEndpoint}/iot-usd`).then(r => r.json());
 
-    return Promise.all([btc, eth, ltc, xrp, neo, vtc])
+    return Promise.all([btc, eth, ltc, xrp, vtc, iota])
         .then(buildPricingObject)
         .then(formatPricingData)
         .then(logPricing);
 }
 
-function buildPricingObject([btc, eth, ltc, xrp, neo, vtc]) {
+function buildPricingObject([btc, eth, ltc, xrp, vtc, iota]) {
     return {
         btc: {
             symbol: 'BTC',
@@ -47,17 +47,17 @@ function buildPricingObject([btc, eth, ltc, xrp, neo, vtc]) {
             holdings: HOLDINGS.xrp.toFixed(6),
             value: parseFloat(xrp.ticker.price * HOLDINGS.xrp, 10).toFixed(2)
         },
-        neo: {
-            symbol: 'NEO',
-            price: parseFloat(neo.ticker.price, 10).toFixed(5),
-            holdings: HOLDINGS.neo.toFixed(8),
-            value: parseFloat(neo.ticker.price * HOLDINGS.neo, 10).toFixed(2)
-        },
         vtc: {
             symbol: 'VTC',
             price: parseFloat(vtc.ticker.price, 10).toFixed(5),
             holdings: HOLDINGS.vtc.toFixed(7),
             value: parseFloat(vtc.ticker.price * HOLDINGS.vtc, 10).toFixed(2)
+        },
+        iota: {
+            symbol: 'IOTA',
+            price: parseFloat(iota.ticker.price, 10).toFixed(5),
+            holdings: HOLDINGS.iota.toFixed(6),
+            value: parseFloat(iota.ticker.price * HOLDINGS.iota, 10).toFixed(2)
         }
     };
 }
