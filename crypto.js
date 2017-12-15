@@ -14,9 +14,10 @@ function getPrices () {
         xrp = fetch(`${baseEndpoint}/ripple`).then(r => r.json()),
         vtc = fetch(`${baseEndpoint}/vertcoin`).then(r => r.json()),
         iota = fetch(`${baseEndpoint}/iota`).then(r => r.json()),
-        ada = fetch(`${baseEndpoint}/cardano`).then(r => r.json());
+        ada = fetch(`${baseEndpoint}/cardano`).then(r => r.json()),
+        trx = fetch(`${baseEndpoint}/tronix`).then(r => r.json());
 
-    return Promise.all([btc, eth, ltc, xrp, vtc, iota, ada])
+    return Promise.all([btc, eth, ltc, xrp, vtc, iota, ada, trx])
         .then(buildPricingObject)
         .then(formatPricingData)
         .then(logPricing);
